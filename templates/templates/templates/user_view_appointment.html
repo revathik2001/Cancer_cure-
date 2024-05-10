@@ -1,0 +1,28 @@
+{% include 'user_header.html' %}
+<center>
+	<h1>View My Appointments</h1>
+	<form method="post">
+		<table style="width: 100%;" cellpadding="40%">
+			<tr>
+				<th>Doctor Name</th>
+				<th>Appointment Date</th>
+				<th>Appointment fees</th>
+				<th>Appointment Details</th>
+
+			</tr>
+			{%  for i in data['view'] %}
+			<tr>
+				<td>{{i['fname']}} {{i['lname']}} </td>
+				<td>{{i['appoin_date']}}</td>
+				<td>{{i['amount']}}</td>
+				<td>{{i['appoin_status']}}</td>
+				{% if i['appoin_status']=='accept' %}
+				<td><a href="user_make_payment?total={{i['amount']}}&appointment_id={{i['appointment_id']}}" class="btn btn-primary">Make Payment</a></td>
+
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+	</form>
+</center>
+{% include 'footer.html' %}

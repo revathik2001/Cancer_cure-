@@ -1,0 +1,115 @@
+{% include 'user_header.html' %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('https://img.freepik.com/premium-vector/ear-sound-from-lines-particle-style-design_41814-325.jpg?w=996'); /* Replace 'background_image.jpg' with the path to your background image */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #000000; /* Set text color to white for better visibility */
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.308); /* Semi-transparent black background */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #000000;
+    }
+
+    th {
+        background-color: #1d4563;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background for even rows */
+    /* } */ 
+
+    tr:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Lighter semi-transparent white background on hover */
+    }
+
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <h1>Upload Image</h1>
+        <table>
+            <tr>
+                <th><input type="file" required="" name="datass" class="form-control"></th>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="submit" value="Upload" class="btn btn-primary"></td>
+            </tr>
+        </table>
+
+        {% if data['pre'] %}
+        <h1>Prediction History</h1>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>Image Uploaded</th>
+                <th>Output</th>
+                <th>Symptoms</th>
+            </tr>
+            {% for row in data['pre'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="/{{ row['datasuploaded'] }}" download=""><img src="/{{ row['datasuploaded'] }}"></a></td>
+                <td>{{ row['output'] }}</td>
+                <td>{{ row['details'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </form>
+</div>
+
+{% include 'footer.html' %}

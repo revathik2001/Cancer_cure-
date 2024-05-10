@@ -1,0 +1,22 @@
+{% include 'user_header.html'%}
+
+<div class="container">
+    <h1>Doctor Details</h1>
+    <div class="row">
+        {% for row in data['view'] %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ row['image'] }}"  style="height: 400px;" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ row['fname'] }} {{ row['lname'] }}</h5>
+                    <p class="card-text">Phone: {{ row['phone'] }}</p>
+                    <p class="card-text">Email: {{ row['email'] }}</p>
+                    <p class="card-text">Specialization: {{ row['place'] }}</p>
+                    <a href="user_send_enquiry?did={{ row['doctor_id'] }}" class="btn btn-success">Send Enquiry</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'footer.html' %}

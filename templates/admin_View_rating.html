@@ -1,0 +1,88 @@
+{% include 'admin_header.html' %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url(/static/images/bg4.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.464); /* Adding a semi-transparent white background to container */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #000000;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #1d4563;
+    }
+
+    th {
+        background-color: #1d4563;
+        color: #ffffff;
+    }
+
+    /* tr:nth-child(even) {
+        background-color: #f9f9f9;
+    } */
+
+    .no-data {
+        text-align: center;
+        color: #999;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
+</style>
+
+<div class="container">
+    {% if data['rate'] %}
+        <h1>RATING HISTORY</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>SNO</th>
+                    <th>USER NAME</th>
+                    <th>RATED</th>
+                    <th>FEEDBACK</th>
+                    <th>DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data['rate'] %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ row['user'] }}</td>
+                        <td>{{ row['rated'] }}</td>
+                        <td>{{ row['feedback'] }}</td>
+                        <td>{{ row['date'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1 class="no-data">!! NO DATA FOUND !!</h1>
+    {% endif %}
+</div>
+
+<!-- {% include 'footer.html' %} -->

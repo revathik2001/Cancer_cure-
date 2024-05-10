@@ -1,0 +1,155 @@
+{% include 'user_header.html' %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        background-image: url("https://img.freepik.com/free-photo/yellow-blue-geomtric-cupboards_23-2148518480.jpg?w=360");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #000000;
+    }
+
+    /* th {
+        background-color: #f2f2f2;
+    } */
+
+    .rate {
+        display: inline-block;
+        font-size: 24px;
+    }
+
+    .rate input {
+        display: none;
+    }
+
+    .rate label {
+        float: right;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .rate label:before {
+        content: '★';
+    }
+
+    .rate input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rate label:hover,
+    .rate label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rate input:checked + label:hover,
+    .rate input:checked ~ label:hover,
+    .rate label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="container">
+    <h1>RATE NOW...</h1>
+    <form method="post">
+        <table>
+            <tr>
+                <th>Rating</th>
+                <td>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" required="">
+                        <label for="star5" title="text"> </label>
+                        <input type="radio" id="star4" name="rate" value="4" required="">
+                        <label for="star4" title="text"> </label>
+                        <input type="radio" id="star3" name="rate" value="3" required="">
+                        <label for="star3" title="text"> </label>
+                        <input type="radio" id="star2" name="rate" value="2" required="">
+                        <label for="star2" title="text"> </label>
+                        <input type="radio" id="star1" name="rate" value="1" required="">
+                        <label for="star1" title="text"> </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Feedback</th>
+                <td><input type="text" name="feed" required="" class="form-control"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" class="btn btn-success" value="SUBMIT"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if data['rate'] %}
+        <h1>RATING HISTORY</h1>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>RATED</th>
+                <th>FEEDBACK</th>
+                <th>DATE</th>
+            </tr>
+            {% for row in data['rate'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row['rated'] }}</td>
+                    <td>{{ row['feedback'] }}</td>
+                    <td>{{ row['date'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}

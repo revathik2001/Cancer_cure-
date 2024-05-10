@@ -1,0 +1,221 @@
+{% include 'admin_header.html' %}
+<style>
+     body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://img.freepik.com/premium-vector/molecular-structure-form-lines-particle-style-design_41814-127.jpg?w=996");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.316);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.878);
+    }
+
+    h1 {
+        text-align: center;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #1d4563;
+    }
+
+    th {
+        background-color: #1d4563;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* tr:nth-child(even) {
+        background-color: #f9f9f9;
+    } */
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-success,
+    .btn-primary {
+        background-color: #28a745;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-success:hover,
+    .btn-primary:hover {
+        background-color: #218838;
+    }
+</style>
+
+<div class="container">
+    {% if data['up'] %}
+    <h1>Update Doctor</h1>
+    <form method="post" enctype="multipart/form-data">
+        <tr>
+            <th>First Name</th>
+        </tr>
+        <tr>
+            <td><input type="text" required="" name="fname"></td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+        </tr>
+        <tr>
+            <td><input type="text" required="" name="lname"></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+        </tr>
+        <tr>
+            <td><input type="text" required="" name="phone"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td><input type="email" required="" name="email"></td>
+        </tr>
+        <tr>
+            <th>Specialization</th>
+        </tr>
+        <tr>
+            <td><input type="text" required="" name="place"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <td><input type="file" required="" name="image"></td>
+        </tr>
+
+    <tr>
+        <td colspan="2" align="center"><input type="submit" name="updatez" value="Update"></td>
+    </tr>
+</table>
+
+    </form>
+    {% else %}
+    <h1>Manage Doctor</h1>
+    <form method="post" enctype="multipart/form-data">
+        <table>
+			<tr>
+				<th>First Name</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="fname"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="lname"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="phone"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="email"></td>
+			</tr>
+			<tr>
+				<th>Specialization</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="place"></td>
+			</tr>
+			<tr>
+				<th>Image</th>
+			</tr>
+			<tr>
+				<td><input type="file" required="" name="image"></td>
+			</tr>
+            <tr>
+				<th>Username</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="uname"></td>
+			</tr>
+            <tr>
+				<th>Password</th>
+			</tr>
+			<tr>
+				<td><input type="text" required="" name="pwd"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn-success" name="submit" value="Add"></td>
+			</tr>
+		</table>
+		
+    </form>
+    {% endif %}
+    
+    {% if data['view'] %}
+    <h1>Doctor Details</h1>
+    <table>
+        <tr>
+            <th>SL.NO</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Specialization</th>
+            <th>Image</th>
+        </tr>
+        {% for row in data['view'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row['fname'] }}  {{ row['lname'] }}</td>
+            <td>{{ row['phone'] }}</td>
+            <td>{{ row['email'] }}</td>
+            <td>{{ row['place'] }}</td>
+            <td><img src="{{ row['image'] }}" alt="" width="200"></td>
+            <td><a href="?action=delete&id={{ row['login_id'] }}" class="btn-success">Delete</a></td>
+            <!-- <td><a href="?action=update&id={{ row['login_id'] }}" class="btn-success">Update</a></td> -->
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}

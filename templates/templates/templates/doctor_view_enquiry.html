@@ -1,0 +1,47 @@
+{%include 'doctor_header.html'%}
+<center><h1>Enquiry details</h1></center>
+{%if data['up']%}
+	<center>
+
+	
+	<form method="post" style="width: 400px;padding: 20px" class="shadow" method="post">	
+	<table class="table"  bgcolor="white">
+	<tr>
+		<th>Enquiry</th>
+			<td><input id="TEXT" type="TEXT" name="reply" value="{{data['up'][0]['reply']}}" class="form-control"></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2"><input type="submit" name="update" class="btn btn-success"></td>
+		</tr>
+	</table>
+	</form>
+
+{%endif%}
+<center>
+	<br>
+	<br>
+<form method="post" style="padding: 20px;width: 100%;" class="shadow" method="post" >
+		<table style="width: 100%;" cellpadding="40%">
+
+	<tr>
+		
+		<th>Patient Name</th>
+		<th>Enquiry details</th>
+		<th>Enuiry Date</th>
+		<th>Reply</th>
+	</tr>
+	{%for r in data['enquiry']%}
+	<tr>
+		<td>{{r['firstname']}} {{r['lastname']}}</td>
+		<td>{{r['enquiry']}}</td>
+		<td>{{r['enq_date']}}</td>
+		<td>{{r['enq_reply']}}</td>
+		<td> <a class="btn btn-success" aria-current="page" href="?action=update&id={{r['equiry_id']}}" class="btn btn-info">Reply</a></td>
+
+
+	</tr>
+	{%endfor%}
+</table>
+</form>
+</center>
+{%include 'footer.html'%}

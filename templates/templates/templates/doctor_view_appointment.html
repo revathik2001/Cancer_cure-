@@ -1,0 +1,42 @@
+{% include 'doctor_header.html' %}
+<center>
+	<h1>View My Appointments</h1>
+	<form method="post">
+		<table style="width: 100%;" cellpadding="40%">
+			<tr>
+				<th>Index</th>
+				<th>Patient Name</th>
+				<th> Image</th>
+				<th>Appointment Date</th>
+				<th>Appointment amount</th>
+		
+				<th>Payment Status</th>
+			</tr>
+			{% for i in data['view'] %}
+
+			<tr>
+
+				<td>{{loop.index}}</td>
+				<td>{{i['firstname']}} {{i['lastname']}}</td>
+				<td><a href="/{{ i['datasuploaded'] }}"><img style="width: 150px;height: 150px" src="/{{ i['datasuploaded'] }}" alt=""></a></td>
+				<td>{{i['appoin_date']}}</td>
+				<td>{{i['amount']}}</td>
+				
+				<td>{{i['appoin_status']}}</td>
+				{% if i['appoin_status']=='pending' %}
+				<td><a href="?action=accept&appointment_id={{i['appointment_id']}}" class="btn btn-primary">Accept</a>
+				<td><a href="?action=reject&appointment_id={{i['appointment_id']}}" class="btn btn-primary">Reject</a>
+
+				{% elif i['appoin_status']=='paid' %}
+
+				<td><a href="doctor_add_remady?appointment_id={{i['appointment_id']}}&user_id={{i['user_id']}}" class="btn btn-primary">Add Remady</a>
+				
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+			
+		</table>
+	</form>
+</center>
+{% include 'footer.html' %}

@@ -1,0 +1,108 @@
+{% include 'admin_header.html' %}
+
+<center>
+	<h1>Doctor</h1>
+	<form method="post">
+		{% if data['up'] %}
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="doc_fname" required="" class="form-control" placeholder="Enter First Name" value="{{data['up'][0]['fname']}}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="doc_lname" required="" class="form-control" placeholder="Enter Last Name" value="{{data['up'][0]['lname']}}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" required="" class="form-control" placeholder="Enter Place" value="{{data['up'][0]['place']}}"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" required="" class="form-control" placeholder="Enter PhoneNumber" value="{{data['up'][0]['phone']}}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="doc_email" required="" class="form-control" placeholder="Enter Email" value="{{data['up'][0]['email']}}"></td>
+			</tr>
+			<tr>
+				<th>Qualification</th>
+				<td><input type="text" name="qualification" required="" class="form-control" placeholder="Enter Your Qualification" value="{{data['up'][0]['qualification']}}"></td>
+			</tr>
+				<tr>
+		<th>User name</th>
+		<td><input type="text" class="form-control" name="name" required="" value="{{data['up'][0]['username']}}" required=""></td>
+	</tr>
+		<th>Password</th>
+		<td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" required=""  value="{{data['up'][0]['password']}}" name="pass" required=""></td>
+	</tr>
+			<tr>
+				<td><input type="submit" name="update"></td>
+			</tr>
+		</table>
+		{% else %}
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="doc_fname" required="" class="form-control" placeholder="Enter First Name"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="doc_lname" required="" class="form-control" placeholder="Enter Last Name"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="place" required="" class="form-control" placeholder="Enter Place"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="phone" maxlength="10" minlength="7" pattern="[0-9]{10}+$" required="" class="form-control" placeholder="Enter PhoneNumber"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="doc_email" required="" class="form-control" placeholder="Enter Email"></td>
+			</tr>
+			<tr>
+				<th>Qualification</th>
+				<td><input type="text" name="qualification" required="" class="form-control" placeholder="Enter Your Qualification"></td>
+			</tr>
+				<tr>
+		<th>User name</th>
+		<td><input type="text" class="form-control" required="" name="name" required=""></td>
+	</tr>
+		<th>Password</th>
+		<td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" required="" name="pass" required=""></td>
+	</tr>
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" class="btn btn-success" name="add_doctor"></td>
+			</tr>
+		</table>
+		{% endif%}
+		<table style="width: 100%;" cellpadding="40%">
+
+	<tr>
+		<th>Name</th>
+		<th>Place</th>
+		<th>Phone</th>
+		<th>Email</th>
+		<th>Qualification</th>
+	</tr>
+	{% for i in data['view'] %}
+	<tr>
+		<td>{{i['fname']}} {{i['lname']}}</td>
+		<td>{{i['place']}}</td>
+		<td>{{i['phone']}}</td>
+		<td>{{i['email']}}</td>
+		<td>{{i['qualification']}}</td>
+		<td><a href="?action=update&doctor_id={{i['doctor_id']}}&login_id={{i['login_id']}}" class="btn btn-primary">Update</a></td>
+		<td><a href="?action=delete&doctor_id={{i['doctor_id']}}" class="btn btn-primary">Delete</a></td>
+	</tr>
+{% endfor %}
+</table>
+		
+	</form>
+</center>
+
+{% include 'footer.html' %}

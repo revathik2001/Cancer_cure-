@@ -1,0 +1,79 @@
+{% include 'admin_header.html' %}
+<style>
+
+body {
+        font-family: Arial, sans-serif;
+        background-image: url(/static/images/bg4.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+   
+  
+    form {
+        background-color: rgba(171, 171, 182, 0.749); /* Dark navy blue */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.464);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Adjusting button color */
+    input[type="submit"] {
+        background-color: #4CAF50; /* Green color, adjust if needed */
+        color: #fff; /* White text color for better contrast */
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Adjust other styles as needed */
+
+
+</style>
+<div class="container">
+    <form method="post">
+        <h1>ADD SYMPTOMS</h1>
+        {% if data['up'] %}
+        <table>
+            <tr>
+                <th><input type="text" required="" name="sym" placeholder="Enter symptoms.." value="{{data['up'][0]['symptoms']}}"></th>
+                <td colspan="2"><input type="submit" class="btn btn-success" name="update" value="ADD"></td>
+            </tr>
+        </table>
+        {% else %}
+        <table>
+            <tr>
+                <th><input type="text" required="" name="sym" placeholder="Enter symptoms.."></th>
+                <td colspan="2"><input type="submit" class="btn btn-success" name="submit" value="ADD"></td>
+            </tr>
+        </table>
+        {% endif %}
+        {% if data['sym']%}
+        <h1>ADDED SYMPTOMS</h1>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>SYMPTOMS</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            {% for row in data['sym']%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{row['symptoms']}}</td>
+                <td><a href="?action=update&did={{row['symptom_id']}}&id={{data['id']}}" class="btn btn-success">Update</a></td>
+                <td><a href="?action=delete&did={{row['symptom_id']}}&id={{data['id']}}" class="btn btn-success">Delete</a></td> 
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </form>
+</div>
+{% include 'footer.html' %}

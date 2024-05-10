@@ -1,0 +1,153 @@
+{% include 'user_header.html'%}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/static/images/bg4.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff51;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table.form-table {
+        width: 100%;
+    }
+
+    table.form-table th {
+        width: 30%;
+        text-align: right;
+        padding: 10px;
+    }
+
+    table.form-table td {
+        padding: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    table.enquiry-table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    table.enquiry-table th, table.enquiry-table td {
+        padding: 10px;
+        border-bottom: 1px solid #000000;
+        text-align: left;
+    }
+
+    table.enquiry-table th {
+        background-color: #1d4563;
+        color: #ddd;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* table.enquiry-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    } */
+
+    table.enquiry-table tr:hover {
+        background-color: #2f313442;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h1>Enquiry Form</h1>
+    <form method="post" enctype="multipart/form-data" >
+        <table class="form-table">
+            <tr>
+                <th>Enquiry:</th>
+                <td><input type="text" class="form-control" name="enq" required=""></td>
+                
+                <!-- <th>Select Doctor:</th>
+                <td>
+                    <select name="doctor">
+                        {% for i in data['view_list'] %}
+                        <option value="{{i['doctor_id']}}">{{i['fname']}}  {{i['lname']}}</option>
+                        {% endfor %}
+                    </select>
+                </td> -->
+            </tr>
+            <tr>
+                <th>File</th>
+                <td><input type="file" class="form-control" required="" name="file"></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center"><input class="btn btn-success" type="submit" name="submit" value="SUBMIT"></td>
+            </tr>
+        </table>
+    </form>
+
+    <table class="enquiry-table">
+        <tr>
+            <th>Enquiry Details</th>
+            <th>Date</th>
+            <th>File</th>
+            <th>Reply</th>
+            <th></th>
+        </tr>
+        {% for r in data['enquiry'] %}
+        <tr>
+            <td>{{ r['enquiry'] }}</td>
+            <td>{{ r['enq_date'] }}</td>
+            <td><img src="{{r['enquiry_file']}}" style=" width:100px;height:100px;" alt=""></td>
+            <td>{{ r['enq_reply'] }}</td>
+            <td><a href="?action=delete&id={{ r['equiry_id'] }}"  class="btn btn-primary">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% include 'footer.html'%}

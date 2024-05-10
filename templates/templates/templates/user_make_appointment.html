@@ -1,0 +1,41 @@
+{% include 'user_header.html' %}
+<center>
+<form method="post"> 
+<table class="table" style="width: 500px;">
+	<h2>Make An Appointment</h2>
+	<tr>
+		<th>Appointment Date</th>
+		<td><input type="datetime-local" required="1" name="appoinment" class="form-control">
+		</td>
+	</tr>
+	<!-- <tr>
+		<td><span style="color:red">appointment Rate :500</span></td>
+	</tr>	 -->
+		
+			<tr>
+				<td colspan="2" align="center">
+		<input type="submit" name="submit" value="Appoinment" class="btn btn-success">
+		</td>
+	</tr>
+	
+</table>
+		<table style="width: 100%;" cellpadding="40%">
+	<tr>
+		<th>Index</th>
+		<th>Date Time</th>
+		<th>Amount</th>
+		<th>Appointment Status</th>
+
+	</tr>
+	{% for i in data['view'] %}
+	<tr>
+		<td>{{loop.index}}</td>
+		<td>{{i['appoin_date']}}</td>
+		<td>{{i['amount']}}</td>
+		<td>{{i['appoin_status']}}</td>
+	</tr>
+	{% endfor %}
+	
+</table></form>
+</center>
+{% include 'footer.html' %}

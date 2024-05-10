@@ -1,0 +1,103 @@
+{% include 'admin_header.html' %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://img.freepik.com/free-photo/black-textured-paper-background_53876-143073.jpg?t=st=1712141221~exp=1712144821~hmac=29018f0ac1919dbb9ee66dfd2705ca12d9f369ed38470ec4a95379352b49e812&w=996");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+	}
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.464);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #1d4563;
+    }
+
+    th {
+        background-color: #1d4563;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* tr:nth-child(even) {
+        background-color: #f9f9f9;
+    } */
+
+    .download-link img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .download-link a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .download-link a:hover {
+        text-decoration: underline;
+    }
+
+    .no-data {
+        text-align: center;
+        color: #999;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
+</style>
+
+<div class="container">
+    {% if data['pre'] %}
+    <h1>PREDICTION HISTORY</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>SNO</th>
+                <th>USER NAME</th>
+                <th>DATA UPLOADED</th>
+                <th>OUTPUT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data['pre'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row['user'] }}</td>
+                <td class="download-link"><a href="/{{ row['datasuploaded'] }}" download=""><img src="/{{ row['datasuploaded'] }}"></a></td>
+                <td>{{ row['output'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h1 class="no-data">!! NO DATA FOUND !!</h1>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}

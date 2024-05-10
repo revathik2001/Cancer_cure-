@@ -1,0 +1,37 @@
+{% include 'admin_header.html' %}
+<center>
+
+	<form method="post">	
+		<h2>Doctor Details</h2>
+		<table style="width: 100%;" cellpadding="40%">
+
+		<tr>
+			<th>Doctor Name</th>
+			<th>Place</th>
+			<th>Phone</th>
+			<th>Email</th>
+		
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['fname']}} {{i['lname']}}</td>
+			<td>{{i['place']}}</td>
+			<td>{{i['phone']}}</td>
+			<td>{{i['email']}}</td>
+		
+			{% if i['usertype'] == "pending" %}
+			<td><a onclick="return confirm('Are you Sure?')" class="btn btn-success" href="?action=approve&login_id={{i['login_id']}}">Approve</a></td>
+			<td><a onclick="return confirm('Are you Sure?')" class="btn btn-danger" href="?action=reject&login_id={{i['login_id']}}">Reject</a></td>
+			{% elif i['usertype'] == "Rejected" %}
+			<td style="color: red;">Rejected</td>
+			{% else %}
+			<td><a onclick="return confirm('Are you Sure?')" class="btn btn-danger" href="?action=delete&login_id={{i['login_id']}}">Remove</a></td>
+
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+
+</center>
+{% include 'footer.html'%}

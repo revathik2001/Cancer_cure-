@@ -1,0 +1,22 @@
+{% include 'admin_header.html' %}
+<center>
+<form method="post">
+		<table style="width: 100%;" cellpadding="40%">
+	<tr>
+		<th>User_name</th>
+		<th>Appointment Date</th>
+		<th>Appointment Status</th>
+	</tr>
+	{% for i in data['view'] %}
+	<tr>
+		<td>{{i['firstname']}} {{i['lastname']}}</td>
+		<td>{{i['appoin_date']}}</td>
+		<td>{{i['appoin_status']}}</td>
+		<td><a href="?action=accept&appointment_id={{i['appointment_id']}}" class="btn btn-primary">Appointment</a></td>
+		
+	</tr>
+{% endfor %}
+</table>
+</form>
+</center>
+{% include 'footer.html' %}

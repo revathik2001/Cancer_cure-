@@ -1,0 +1,64 @@
+{% include 'doctor_header.html' %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/static/images/bg4.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* Form container */
+    .form-container {
+        margin: 50px auto; /* Center the form vertically */
+        width: 50%; /* Adjust the width of the form */
+        background-color: rgba(255, 255, 255, 0.464);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Form styling */
+    form {
+        text-align: center; /* Center-align form elements */
+    }
+
+    form input[type="text"] {
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100%; /* Make the input box full-width */
+        box-sizing: border-box;
+        border: 1px solid #ccc; /* Input border color */
+        border-radius: 5px;
+    }
+
+    form input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50; /* Submit button background color */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+</style>
+
+<div class="form-container">
+    <form method="post">
+        <table>
+            <tr>
+                <th>Send Reply</th>
+                <td><input type="text" name="sendreply" required=""></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="submit"  value="submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,75 @@
+{% include 'user_header.html' %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://img.freepik.com/free-photo/solid-navy-blue-concrete-textured-wall_53876-124584.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1712707200&semt=ais");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+	}
+
+    .container {
+        max-width: 1100px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.464);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px; /* Adjust spacing between rows */
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #1d4563;
+    }
+
+    th {
+        background-color: #1d4563;
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* tr:nth-child(even) {
+        background-color: #f9f9f9;
+    } */
+
+    tr:hover {
+        background-color: #e9ecef; /* Change background color on hover */
+    }
+</style>
+
+<div class="container">
+    <h1>View Cancer Details</h1>
+    <table>
+        <tr>
+            <th>Cancer</th>
+            <th>Details</th>
+            <th>Symptoms</th>
+        </tr>
+        {% for i in data['alz'] %}
+        <tr>
+            <td>{{ i['alzimers'] }}</td>
+            <td>{{ i['details'] }}</td>
+            <td>{{ i['symptoms'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% include 'footer.html' %}
